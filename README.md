@@ -1,2 +1,16 @@
-# sdl2-x11-vnc
-and sdl2 app that remote a given x11 display into sd2 window and supports mouse and keyboard inputs 
+
+
+# install requirements : 
+```bash
+make install
+```
+
+# create virtual display ( script runs xterm) : 
+```bash
+make display
+```
+
+# run display viewer : 
+```bash
+make build
+```

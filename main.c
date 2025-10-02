@@ -212,10 +212,20 @@ void handle_mouse_event(SDL_Event *e, Display *dpy, Window root,
 
 // ==================== MAIN ====================
 
-int main(){
-    // Open X display
-    Display *dpy = XOpenDisplay(":99");
-    if(!dpy){ fprintf(stderr,"Cannot open X display :99\n"); return 1; }
+int main(int argc, char **argv) {
+    if (argc < 2) {
+        fprintf(stderr, "Usage: %s <DISPLAY>\n", argv[0]);
+        return 1;
+    }
+
+    const char *display_name = argv[1];   // e.g. ":0"
+           // e.g. 6300
+
+    Display *dpy = XOpenDisplay(display_name);
+    if (!dpy) {
+        fprintf(stderr, "Cannot open X display %s\n", display_name);
+        return 1;
+    }
 
     Window root = DefaultRootWindow(dpy);
     int screen_w = DisplayWidth(dpy, DefaultScreen(dpy));
@@ -311,3 +321,4 @@ int main(){
 
     return 0;
 }
+
